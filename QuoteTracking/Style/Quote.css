@@ -1,0 +1,610 @@
+body {
+    font-family: "open sans" !important;
+    background-color: #141414 !important;
+}
+
+/*** Begin - Quote***/
+.scLogo {
+    position: absolute;
+    left: 0;
+    height: 45px;
+}
+
+.scAppHeader, .scAppFooter {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    left: 0;
+    z-index: 2;
+    background: #4F4F4F;
+    color: #FFF;
+}
+
+.scFillHeight {
+    height: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.scAppHeader {
+    top: 0;
+    height: 45px;
+    line-height: 45px;
+    font-size: 25px;    
+}
+
+.scAppFooter { 
+    bottom: 0;
+    height: 20px;
+    font-size: 12px;
+}
+
+.scTopNav, .scBottomNav {
+    position :absolute;
+    height: 40px;
+    width: 100%;
+    z-index: 2;
+    padding: 0;
+    left: 0;
+}
+
+.scTopNav {
+    top: 45px;
+}
+
+.scBottomNav {
+    bottom: 20px;
+    text-align: center;
+    border-top: 1px solid #313131;
+    padding-top: 8px;
+}
+
+.scFilter {
+    padding-left: 5px;
+}
+
+.scFilter label {
+    color: #EEDDAA;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+.scSearchFilter {
+    position: absolute;
+    right: 5px;
+    top: 0px;
+}
+
+.scSearchLabel {
+    color: #EEDDAA;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.scSearchInput {
+    width: 140px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.scHighlightedText {
+    color: red;
+}
+
+.btn-info {
+    border-radius: 2px;
+    background-color: #999;
+    border-color: #46b8da;
+}
+
+.btn-info.uib-datepicker-current {
+    display: none;
+}
+
+.uib-button-bar {
+    padding: 0 !important;
+}
+.btn-danger {
+    margin-left: 5px !important;
+}
+
+.btn-success {
+    margin-right: 5px !important;
+}
+
+.btn-danger, .btn-success {
+    border-radius: 2px !important;
+}
+
+.scHomeFooterbtn {
+    margin-right: 4px !important;
+}
+
+.scBusyOverlay {
+    width: 100%;
+    height: 100%;    
+    opacity: 0.2;
+    position: absolute;
+    z-index: 3;
+    background: #C0BAB6;
+}
+
+.scBusy, .scNoDataTemplate {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 3;    
+}
+
+.scBusy {
+    height: 50px;
+    width: 50px;
+}
+
+.scNoDataTemplate {    
+    color: #fff;
+}
+
+.scAttachBoxText {
+    color: #EEDDAA;        
+    width: 180px;   
+    margin-left: 175px;
+    margin-top: 40px;
+    opacity: 0.5;
+    font-weight: 100;
+}
+
+.scQuoteGrid {
+    position: absolute;
+    z-index: 1;
+    top: 85px;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+}
+
+
+#btnFilterIcon {
+    padding: 3px 6px !important;
+    font-size: 13px;
+}
+
+#btnFilterIcon i {
+    top: 2px;
+}
+
+.OpenModelCenter .modal-dialog {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) !important;
+    width: 563px;
+    margin: auto;
+}
+.modal-open .modal {
+    overflow: hidden;
+}
+
+.ag-horizontal-left-spacer {
+    display: none;
+}
+/*** End - Quote ***/
+
+/*** Begin - Black Theme ***/
+input {
+    background: transparent !important;
+    outline: none !important;
+    border: none;
+    border-bottom: 1px solid #656565;
+    color: #FFF !important;
+    padding: 0 2px;
+}
+
+input:focus, input:active  {
+    border-bottom: 1px solid #EEDDAA;
+}
+
+.ag-theme-balham-dark {
+    font-family: "open sans" !important;
+    font-size: 13px !important;
+    background-color: transparent !important;
+}
+
+.ag-theme-balham-dark .ag-root {
+    border: 1px solid #313131 !important;
+}
+
+.ag-theme-balham-dark .ag-header {
+    background-color: #282828 !important;
+    background-image: linear-gradient(to bottom, #282828 0%,#232323 100%) !important;
+    color: #EEDDAA !important; 
+    font-size: 14px !important;
+    font-weight: normal !important;
+    border-bottom: 1px solid #313131 !important;
+    font-family: "open sans" !important;
+}
+
+.ag-theme-balham-dark .ag-header-cell::after,
+.ag-theme-balham-dark .ag-header-group-cell::after {
+    margin: 0 !important;
+    height: 100% !important; 
+}
+
+.ag-header-group-cell-label, .ag-header-cell-label {
+    justify-content: center !important;
+}
+
+.ag-header-cell {
+    line-height: 32px !important;
+}
+
+.ag-theme-balham-dark .ag-ltr .ag-cell {
+    border: none !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.ag-theme-balham-dark .ag-row {
+    border-color: transparent !important;
+}
+
+.ag-theme-balham-dark .ag-ltr .ag-cell {
+    border-right: 1px solid #313131 !important;
+}
+
+.ag-theme-balham-dark .ag-row-even {
+    background-color: #151515 !important;
+}
+    
+.ag-theme-balham-dark .ag-row-odd {
+        background-color: #1E1E1E !important;
+}
+
+.ag-theme-balham-dark .ag-row-hover {
+    background-color: #3C3C1E !important;
+}
+
+.ag-tooltip{
+    max-width: 400px;
+}
+
+.ag-theme-balham-dark .ag-row-selected {
+    background-color: #646432 !important;
+}
+
+.btn-info {
+    background-image: linear-gradient(to bottom, #999999 0%,#646464 100%) !important;
+    padding: 0px 12px;
+    border: 1px solid #747474 !important;
+    outline: none !important;
+    font-size: 13px;
+}
+
+.btn-info:hover:not(:disabled), .btn-info:focus:not(:disabled) {
+    background: linear-gradient(to bottom, #686868 0%,#404142 50%,#353535 100%) !important;
+}
+
+.btn-info:active {
+    background: linear-gradient(to bottom, #353535 0%,#404142 50%,#686868 100%) !important;
+    border: 1px solid #888888 !important;
+}
+
+.uib-yearpicker .btn-default,
+.uib-monthpicker .btn-default,
+.btn-sm {
+    color: #FFF;
+    background: transparent;
+    border: 0;
+}
+
+.uib-datepicker-popup.dropdown-menu {
+    background: #141414;
+    border: 1px solid #313131;
+    outline: none;
+}
+
+.uib-yearpicker,
+.uib-monthpicker,
+.uib-daypicker {
+    outline: none;
+}
+
+.uib-daypicker small {
+    color: #FFF;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.uib-yearpicker .btn-default.active,
+.uib-monthpicker .btn-default.active,
+.uib-daypicker .btn-default.active {
+    background-color: #646432;
+    border: 0;
+    border-radius: 0;
+    color: #FFF;
+    background-image: linear-gradient(to bottom, #646432 0%,#646432 100%) !important;
+    padding: 5px 10px !important;
+}
+
+.uib-yearpicker .btn-default.hover,
+.uib-monthpicker .btn-default:hover, 
+.uib-daypicker .btn-default:hover {
+    background-color: #32321E;
+    border: 0;
+    border-radius: 0;
+    color: #FFF;
+}
+
+.uib-yearpicker .btn-default[disabled]:focus,
+.uib-monthpicker .btn-default[disabled]:focus, 
+.uib-daypicker .btn-default[disabled]:focus{
+    background-color: #514f4f;
+    outline: none;
+    color: #888;
+}
+
+.uib-yearpicker .btn-default.active .text-info,
+.uib-monthpicker .btn-default.active .text-info,
+.uib-daypicker .btn-default.active .text-info {
+    color: #FFF;
+}
+
+.modal-backdrop {
+    background-color: #666;
+}
+
+.modal-content {
+    border-radius: 0;
+    box-shadow:none;
+    border: none;
+    background-color: transparent;
+}
+
+#dvErrorModalContent {
+    width: max-content !important;
+    max-width: 500px !important;
+    margin: auto !important;
+}
+
+.modal-header {
+    border-radius: 0 !important;
+    height: 30px !important;
+    padding: 0 10px;
+    line-height: 30px;
+    color: #FFF !important;
+    background-color: #6E6E6E !important;
+    background: linear-gradient(to bottom, #717171 1%,#5e5e5e 50%,#4f4f4f 51%,#353535 100%);
+    border: none;
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 28px;
+    font-size: 15px;
+    color: #FFF;
+}
+
+.close {
+    line-height: inherit;
+    color: #FFF;
+    opacity: .8;
+    outline: none;
+}
+
+.close:focus, .close:hover {
+    color: #FFF;
+    opacity: 1;
+}
+
+.modal-body {
+    background: #141414;
+    padding: 8px 10px 15px 10px;
+}
+
+.modal-footer {
+    background: #2E2E2E;
+    padding: 10px 15px;
+    text-align: center;
+    border-top: 0px solid #313131;
+}
+
+input, select,scValidField {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #656565;
+    outline: none;
+    color: #FFF;
+}
+
+input[type=checkbox] {
+    margin: 0 5px 0 8px;
+    position: relative;
+    top: 2px;
+}
+
+select option {
+    background: #141414;
+    color: #fff;
+}
+
+textarea {
+    background: transparent;
+    border: 1px solid #656565;
+    outline: none;
+    color: #FFF;
+}
+
+textarea:active, textarea:focus {
+    border: 1px solid #EEDDAA;
+}
+
+input:active, input:focus, select:focus, select:active {
+    border-bottom: 1px solid #EEDDAA;
+}
+
+input[disabled="disabled"],
+select[disabled="disabled"] {
+    color: #AAA !important;
+    border-bottom: 1px solid #373737;
+}
+
+.scFilterSelect {
+    margin-right: 8px;
+}
+
+textarea[disabled="disabled"] {
+    color: #AAA;
+    border: 1px solid #656565;
+}
+
+.scHasError {    
+    border-color: #FF0000;
+}
+
+.scDatePickerBtn[disabled] {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar, ::-webkit-scrollbar-track {
+  background: #1D1D1D;
+  border: 1px solid #414141;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #383838;
+  border: 1px solid #646464;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #383838;
+  border: 1px solid #646464;
+}
+/*** End - Black Theme ***/
+
+/*** Begin - ErrorMessagePopUp ***/
+.scErrorPopUpLabel {
+    font-weight: normal;
+    color: #EEDDAA;
+    font-size: 13px;
+}
+/*** End - ErrorMessagePopUp ***/
+
+/*** Begin - Toaster ***/
+.ASToast {
+    position: absolute;
+    padding: 20px 15px;
+    z-index: 10;
+    left: 50%;
+    transform: translate(-50%);
+    color: #FFF;
+    bottom: 60px;
+    border-radius: 4px;
+}
+
+as-toast .SUCCESS {
+    background: green;
+    box-shadow: darkgreen 0 0 5px;
+}
+
+as-toast .ERROR {
+    background: #8E2827;
+    box-shadow: red 0 0 5px;
+}
+
+as-toast .WARNING {
+    background: #F89406;
+    box-shadow: yellow 0 0 5px;
+    z-index: 1052;
+}
+/*** End - Toaster ***/
+
+/*** Begin - Attachment ***/
+.scDropText {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0);
+}
+
+.scDropText label {
+    color: #AAA;
+    font-weight: normal;
+}
+
+.scBrowse {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.scFileDragDropOverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
+    background: #e4fbfb;
+    border: 3px dotted #2cbbff;
+}
+
+.scAddDeleteButtons {
+    position: absolute;
+    right: 0;
+    padding: 5px;
+}
+
+.scAddDeleteButtons .btn-default {
+    color: #fffff0;
+    background-color: transparent;
+    border-color: #adadad;
+    display: block;
+    margin: 10px 0;
+}
+
+.scAddDeleteButtons .btn-default:hover, .scAddDeleteButtons .btn-default:active {
+    color: #fffff0;
+    background-color: #4d4d4d;
+    border-color: #adadad;
+}
+
+.scDocumentContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: auto;
+}
+
+.SelectedFile {
+    border: 1px solid rgb(0, 151, 167);
+    background: #404040;
+}
+
+.scDocumentDisplay {
+    position: relative;
+    width: 70px;
+    float: left;
+    text-align: center;
+    margin: 4px;
+    border: 1px solid transparent;
+}
+
+.scDocumentDisplay img {
+    height: 64px;
+}
+
+.scDocumentDisplay label {
+    width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    padding-top: 2px;
+    white-space: nowrap;
+    margin-bottom: 0;
+    color: #F2F2F2;
+}
+/*** End - Attachment ***/

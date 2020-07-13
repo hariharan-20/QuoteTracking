@@ -1,0 +1,128 @@
+<div class="scBusyOverlay" ng-show="Loading"></div>
+<img class="scBusy" ng-show="Loading" src="Images/ajax-loader.gif" />
+<div modal-draggable> 
+    <form name="frmQuote" novalidate ng-enter="Save()">
+        <div class="modal-header">
+            <button class="close" ng-click="CancelModal()" data-toggle="modal">&times;</button>
+            <h4 class="modal-title" ng-model="ModalTitle"><span ng-bind="ModalTitle"></span></h4>
+        </div>
+        <div class="modal-body">
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Quote Status</label>
+                <select name="QuoteStatus" class="scFormItemSelect" ng-model="Quote.QuoteStatusCode" tabindex="1" ng-change="OnChangeQuoteStatus()" ng-disabled="DisabledOnOpen" autofocus
+                        ng-options="quoteStatusOption.QuoteStatusCode as quoteStatusOption.QuoteStatusName for quoteStatusOption in QuoteStatusOptions | orderBy:quoteStatusOption.QuoteStatusCode"></select>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Department</label>
+                <select name="Department" class="scFormItemSelect" ng-model="Quote.DepartmentRecordId" tabindex="2" ng-disabled="DisabledOnApproved" id="cmbDepartment"
+                        ng-options="departmentOption.DepartmentRecordId as departmentOption.DepartmentName for departmentOption in DepartmentOptions" ng-required="true"></select>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Description</label>
+                <textarea name="Description" class="scFormItemTextarea" ng-model="Quote.Description" rows="3" tabindex="3" ng-disabled="DisabledOnApproved" ng-required="true" maxlength="500"></textarea>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Estimated Hours</label>
+                <input type="text" name="EstimatedHours" class="scFormItemInput" ng-model="Quote.EstimatedHours" tabindex="4" allow-typing="^[0-9]*(?:\.[0-9]{0,4})?$" ng-disabled="DisabledOnApproved"
+                    ng-required="true" autocomplete="off" maxlength="7" id="txtEstHours"/>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Estimated Date</label>
+                <input class="scFormItemDateInput" type="datetime" name="EstimatedDate" uib-datepicker-popup="dd/MM/yyyy" ng-model="Quote.EstimatedDate"
+                       is-open="EstimatedDatePopup" show-weeks=false tabindex="5" maxlength="10" allow-typing="^[0-9/]+$" ng-disabled="DisabledOnApproved"
+                       ng-required="true" readonly ng-click="OpenDate('EST')" />
+                <button type="button" class="btn btn-default btn-sm scDatePickerBtn" ng-click="OpenDate('EST')" tabindex="6" ng-disabled="DisabledOnApproved">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Requisition #</label>
+                <input class="scFormItemInput" name="RequisitionNumber" ng-model="Quote.RequisitionNumber" tabindex="7" allow-typing="^[0-9]+$" ng-disabled="DisabledRequisition"  id="txtReqNum" 
+                       ng-required="RequiredOnApproved" autocomplete="off" maxlength="12"/>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Requisition Date</label>
+                <input class="scFormItemDateInput" name="RequisitionDate" uib-datepicker-popup="dd/MM/yyyy" ng-model="Quote.RequisitionDate" ng-model-options="{timezone: 'utc'}" 
+                       ng-disabled="DisabledRequisition" ng-click="OpenDate('RST')" is-open="RequisitiondatePopup" show-weeks=false tabindex="8" maxlength="10" 
+                       allow-typing="^[0-9/]+$" readonly ng-required="RequiredOnApproved" />
+                <button type="button" class="btn btn-default btn-sm scDatePickerBtn" ng-click="OpenDate('RST')" tabindex="9" ng-disabled="DisabledRequisition">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">PO #</label>
+                <input class="scFormItemInput" ng-model="Quote.PONumber" tabindex="10" allow-typing="^[0-9]+$" ng-disabled="DisabledOnNew" autocomplete="off" maxlength="12" id="txtPONumber"/>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Invoice #</label>
+                <input class="scFormItemInput" ng-model="Quote.InvoiceNumber" tabindex="14" allow-typing="^[0-9]+$" ng-disabled="DisabledOnNew" maxlength="12" id="txtInvoiceNumber" autocomplete="off" />
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">PO Date</label>
+                <div class="scDateInputGroup">
+                    <input class="scFormItemDateInput" uib-datepicker-popup="dd/MM/yyyy" ng-model="Quote.PODate" ng-model-options="{timezone: 'utc'}" ng-disabled="DisabledOnNew"
+                           is-open="PoReceivedeDatePopup" show-weeks=false tabindex="11" maxlength="10" allow-typing="^[0-9/]+$" readonly ng-click="OpenDate('PO')" id="txtPODate"/>
+                    <button type="button" class="btn btn-default btn-sm scDatePickerBtn" ng-click="OpenDate('PO')" tabindex="12" ng-disabled="DisabledOnNew">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Invoice Date</label>
+                <input class="scFormItemDateInput" uib-datepicker-popup="dd/MM/yyyy" ng-model="Quote.InvoiceDate" ng-model-options="{timezone: 'utc'}" ng-disabled="DisabledOnNew"
+                       is-open="InvoiceDatePopup" show-weeks=false tabindex="15" maxlength="10" allow-typing="^[0-9/]+$" readonly ng-click="OpenDate('INV')" id="txtInvoiceDate"/>
+                <button type="button" class="btn btn-default btn-sm scDatePickerBtn" ng-click="OpenDate('INV')" tabindex="16" ng-disabled="DisabledOnNew" >
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">PO Status</label>
+                <select class="scFormItemSelect" ng-model="Quote.POStatusCode" tabindex="13" ng-disabled="DisabledOnNew"
+                        ng-options="poStatusOption.POStatusCode as poStatusOption.POStatusName for poStatusOption in POStatusOptions"></select>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Invoice Status</label>
+                <select class="scFormItemSelect" ng-model="Quote.InvoiceStatusCode" tabindex="17" ng-disabled="DisabledOnNew"
+                        ng-options="invoiceStatusOption.InvoiceStatusCode as invoiceStatusOption.InvoiceStatusName for invoiceStatusOption in InvoiceStatusOptions"></select>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemLabel">Used By</label>
+                <select name="UsedBy" class="scFormItemSelect" ng-model="Quote.UserRecordId" tabindex="18"
+                        ng-options="userDetailOption.UserRecordId as userDetailOption.UserName for userDetailOption in UserDetailsOPtions" ng-required="true"></select>
+                <span class="scRequiredField" ng-show="Save && $error.required"></span>
+            </div>
+            <div class="scFormItem">
+                <label class="scFormItemAttachLabel">Attachments</label>
+                <div class="scFormItemAttachment">
+                    <input type="file" class="hide" id="txtUploadFile" onchange="angular.element(this).scope().HandleBrowseFile(this.files)" multiple />
+                    <div id="dvFileDragDropOverlay" class="scFileDragDropOverlay"></div>
+                    <div id="dvDocumentContainer" class="scDocumentContainer">
+                        <div class="scAddDeleteButtons">
+                            <button type="button" class="btn btn-default btn-sm" title="Add Attachment(s)"
+                                    ng-click="AddAttachment()" tabindex="20">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" title="Remove Attachment(s)" 
+                                    ng-click="AttachmentDeleteConfirmation()" tabindex="21">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                        </div>
+                        <div class="scDropText" ng-show="ShowBrowseLabel">
+                            <label>Drop attachments here or <span class="scBrowse" ng-click="AddAttachment()" tabindex="19">Browse</span> </label>
+                        </div>
+                        <a id="aDownload" ng-hide="true"></a>                       
+                        <div class="scDocumentDisplay" ng-repeat="attachment in Quote.Attachments | filter : AttachmentFilter" ng-dblclick="DownloadAttachment(attachment.Name, attachment.AttachmentStatus)" 
+                             ng-click="SelectCurrentItem($event, attachment.Name)">
+                            <img ng-src="Images\{{attachment.FileType}}.png" on-error-src="Images\file.png" title="{{attachment.Name}}" />
+                            <label title="{{attachment.Name}}">{{attachment.Name}}</label>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-info btn-mg" ng-click="Save()" tabindex="22" ng-confirm> Save </button>
+            <button class="btn btn-info btn-mg" ng-click="CancelModal()" ng-enter="CancelModal()" tabindex="23"> Cancel </button>
+        </div>
+    </form>
+</div>

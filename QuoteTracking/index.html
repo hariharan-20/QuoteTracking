@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="QuoteTracking">
+    <head>
+        <link href="Images/logo.png" rel="icon">
+        <title> AS Quote tracking</title>
+        <link rel="stylesheet" href="Style/bootstrap.min.css" />
+        <link rel="stylesheet" href="Style/OpenSans.css" />
+        <link rel="stylesheet" href="Style/AddEditQuote.css" />
+        <link rel="stylesheet" href="Style/Quote.css" />
+        <script src="Scripts/angular.js"></script>
+        <script src="Scripts/ag-grid-community.min.js"></script>
+        <script src="Scripts/angular-animate.js"></script>
+        <script src="Scripts/angular-sanitize.js"></script>
+        <script src="Scripts/ui-bootstrap-tpls.js"></script>        
+        <script src="Scripts/app.js"></script>
+        <script src="Scripts/AddEditQuote.js"></script>               
+        <script src="Scripts/Common.js"></script>
+    </head>
+    <body ng-controller="QuoteTrackingController"> 
+        <div class="scAppHeader">
+            <img src="Images/logo.png" class="scLogo" alt="Annamsoft">
+            AS Quote            
+        </div>
+        <div class="scTopNav">
+            <div class="scFilter">
+                <label>Filter by </label>
+                <select class="scFormItemSelect scFilterSelect" ng-model="QuoteOptions"  ng-change="GetQuotes()">
+                    <option value="All" selected="selected">All</option>
+                    <option value="OnSelectDepartment">Department</option>
+                    <option value="OnSelectEstDate">Estimated Date</option>
+                    <option value="OnSelectInvoiceStatus">Invoice Status</option>
+                    <option value="OnSelectPOStatus">PO Status</option>
+                    <option value="OnSelectQuoteNumber">Quote #</option>
+                    <option value="OnSelectQuoteStatus">Quote Status</option>                    
+                </select>        
+                <input ng-model="FilterQuoteNumber" ng-show="QuoteOptions == 'OnSelectQuoteNumber'" class="scFormItemInput" allow-typing="^[0-9]+$" ng-enter="GetQuotes()"/>
+                <select ng-model="QuoteStatusOptions" ng-show="QuoteOptions == 'OnSelectQuoteStatus'" class="scFormItemSelect scFilterSelect" ng-change="GetQuotes()" >
+                    <option selected="selected">All</option>
+                    <option value="APD">Approved</option>
+                    <option value="UAPD">Unapproved</option>
+                    <option value="OHD">Hold</option>
+                </select>
+                <select class="scFormItemSelect scFilterSelect" ng-show="QuoteOptions == 'OnSelectDepartment'" ng-model="DepartmentRecordId" ng-change="GetQuotes()" 
+                        ng-options="departmentOption.DepartmentRecordId as departmentOption.DepartmentName for departmentOption in DepartmentOptions"></select>
+                <select class="scFormItemSelect scFilterSelect" ng-show="QuoteOptions == 'OnSelectInvoiceStatus'" ng-model="InvoiceStatusCode" ng-change="GetQuotes()" 
+                        ng-options="invoiceStatusOption.InvoiceStatusCode as invoiceStatusOption.InvoiceStatusName for invoiceStatusOption in InvoiceStatusOptions"></select>
+                <select class="scFormItemSelect scFilterSelect" ng-show="QuoteOptions == 'OnSelectPOStatus'" ng-model="POStatusCode" ng-change="GetQuotes()" 
+                        ng-options="poStatusOption.POStatusCode as poStatusOption.POStatusName for poStatusOption in POStatusOptions"></select>     
+                <div class="scFormItem" ng-show="QuoteOptions == 'OnSelectEstDate'">
+                    <label>From</label>
+                    <input class="scFormItemDateInput" type="datetime" uib-datepicker-popup="dd/MM/yyyy" ng-model="FromEstDate" 
+                           is-open="FromEstDatePopup" ng-click="OpenDate('FROMEST')" show-weeks=false maxlength="10" allow-typing="^[0-9/]+$" readonly />
+                    <button type="button" class="btn btn-default btn-sm scDatePickerBtn" ng-click="OpenDate('FROMEST')">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </div>
+                <div class="scFormItem" ng-show="QuoteOptions == 'OnSelectEstDate'">
+                    <label>To</label>
+                    <input class="scFormItemDateInput" type="datetime" uib-datepicker-popup="dd/MM/yyyy" ng-model="ToEstDate" ng-click="OpenDate('TOEST')"
+                           is-open="ToEstDatePopup" show-weeks=false maxlength="10" allow-typing="^[0-9/]+$" readonly />
+                    <button type="button" class="btn btn-default btn-sm scDatePickerBtn" ng-click="OpenDate('TOEST')">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </div>
+                <button class="btn btn-info btn-mg" id="btnFilterIcon" ng-click="GetQuotes()"><i class="glyphicon glyphicon-filter"></i></button>
+                <input type="checkbox" ng-model="ShowDelete" id="chkShowDelete" ng-click="GetQuotes()"/><label for="chkShowDelete">Show deleted quote also</label>
+            </div>            
+            <div class="scSearchFilter">
+                <label class="scSearchLabel">Search :</label>
+                <input class="scSearchInput" ng-model="SearchValue" ng-change="onSearch()" placeholder="Search all" autofocus />
+            </div>            
+        </div>
+        <div class="scBusyOverlay" ng-show="Loading"></div>
+        <img class="scBusy" ng-show="Loading" src="Images/ajax-loader.gif" />
+        <div class="scNoDataTemplate" ng-show="NoDataTemplate">No records to show</div>
+        <div class="scQuoteGrid" >
+            <div id="dgdQuote" ag-grid="QuoteGridOption" class="ag-theme-balham-dark scFillHeight"> </div>            
+        </div>
+        <div class="scBottomNav">
+            <button class="btn btn-info btn-mg scHomeFooterbtn" ng-click="OpenQuote('ADD')"> Add </button>
+            <button class="btn btn-info btn-mg scHomeFooterbtn" ng-click="OpenQuote('EDIT')"> Edit </button>
+            <button class="btn btn-info btn-mg scHomeFooterbtn" ng-click="OpenQuote('REQUOTE')"> Re-Quote </button>
+            <button class="btn btn-info btn-mg" ng-click="ConfirmDelete('DELETE')"> Delete </button>            
+        </div>      
+        <div class="scAppFooter">@ 2019 Annamsoft</div>    
+        <as-toast></as-toast>    
+    </body>
+</html>
